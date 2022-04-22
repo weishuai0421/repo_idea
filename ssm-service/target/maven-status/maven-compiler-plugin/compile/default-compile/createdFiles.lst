@@ -1,0 +1,5 @@
+com\lagou\service\impl\TestServiceImp.class
+com\lagou\test\ServiceTest.class
+com\lagou\service\impl\CourseServiceImpl.class
+com\lagou\service\CourseService.class
+com\lagou\service\TestService.class
