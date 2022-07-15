@@ -11,18 +11,19 @@ import java.util.List;
 public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuMapper menuMapper;
+    //查询所有的父子菜单信息
     @Override
     public List<Menu> findSubMenuListByPid(Integer pid) {
         List<Menu> menuList = menuMapper.findSubMenuListByPid(pid);
         return menuList;
     }
-
+    //查询所有的菜单信息
     @Override
     public List<Menu> findAllMenu() {
         List<Menu> menuList = menuMapper.findAllMenu();
         return menuList;
     }
-
+    //根据id查询菜单信息
     @Override
     public Menu findMenuById(Integer id) {
         Menu menu = menuMapper.findMenuById(id);

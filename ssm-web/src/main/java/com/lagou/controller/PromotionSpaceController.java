@@ -29,7 +29,7 @@ public class PromotionSpaceController {
         return responseResult;
 
     }
-    //添加广告位的方法
+    //添加或修改广告位的方法
     @RequestMapping("/saveOrUpdatePromotionSpace")
 //    public ResponseResult saveOrUpdatePromotionSpace(@RequestBody String promotionSpace) throws IOException {
 //        System.out.println(promotionSpace);
@@ -58,7 +58,7 @@ public class PromotionSpaceController {
         return responseResult;
         }
 
-        //根据id查询广告位信息
+        //根据id查询广告位信息，回显广告位名称
         @RequestMapping("/findPromotionSpaceById")
         public ResponseResult findPromotionSpaceById(Integer id){
             PromotionSpace promotionSpace = promotionSpaceService.findPromotionSpaceById(id);

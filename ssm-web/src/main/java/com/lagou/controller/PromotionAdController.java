@@ -7,6 +7,7 @@ import com.lagou.domain.PromotionAdVo;
 import com.lagou.domain.ResponseResult;
 import com.lagou.service.PromotionAdService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,8 +35,8 @@ public class PromotionAdController {
     @RequestMapping("/PromotionAdUpload")
     public ResponseResult fileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
         //1.判断当前文件是否为空
-        if(file.isEmpty()){
-            throw  new RuntimeException();
+        if (file.isEmpty()) {
+            throw new RuntimeException();
         }
         //2.获取项目部署路径
         String realPath = request.getServletContext().getRealPath("");
@@ -48,7 +49,7 @@ public class PromotionAdController {
         System.out.println(originalFilename);
 
         //4.生成新文件名
-        String newFileName =  System.currentTimeMillis() + originalFilename.substring(originalFilename.lastIndexOf("."));
+        String newFileName = System.currentTimeMillis() + originalFilename.substring(originalFilename.lastIndexOf("."));
         System.out.println(originalFilename.lastIndexOf("."));
 
         System.out.println(newFileName);
@@ -57,24 +58,31 @@ public class PromotionAdController {
         File filePath = new File(uploadPath, newFileName);
 
         //如果目录不存在就创建目录
-        if( !filePath.getParentFile().exists()){
+        if (!filePath.getParentFile().exists()) {
             filePath.getParentFile().mkdir();
             System.out.println("创建目录" + filePath);
         }
         file.transferTo(filePath);
         //6.将文件名和文件路径返回进行响应
         Map<String, String> map = new HashMap<>();
-        map.put("fileName",newFileName);
-        map.put("filePath","http://localhost:8080/upload/" + newFileName);
-        ResponseResult responseResult = new ResponseResult(true,200,"图片上传成功",map);
+        map.put("fileName", newFileName);
+        map.put("filePath", "http://localhost:8080/upload/" + newFileName);
+        ResponseResult responseResult = new ResponseResult(true, 200, "图片上传成功", map);
         return responseResult;
-        //广告上下线状态的切换
-
-
-
 
 
 
     }
+        //广告上下线状态的切换
+        @GetMapping("/updatePromotionAdStatus")
+        public void updatePromotionAdStatud(PromotionAd promotionAd){
+            promotionAdService.updataPromotionAdStatus(promotionAd.getId(),promotionAd.getStatus());
+        }
+
+
+
+
+
+
 
 }

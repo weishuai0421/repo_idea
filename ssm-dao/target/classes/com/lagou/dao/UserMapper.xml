@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lagou.dao.UserMapper">
-    <select id="findAllUserByPage" parameterType="userVo" resultType="user">
-        select * from user
-        <where>
-            <if test="true">
-                and is_del != 1
-            </if>
-<!--            <if test="username != null and username != ''">-->
 
-<!--                and name = #{username}-->
-<!--            </if>-->
+    <select id="findAllUserByPage" parameterType="userVo" resultType="user">
+       select * from user where name = #{username}
+<!--        <where>-->
 <!--            <if test="true">-->
 <!--                and is_del !=1-->
 <!--            </if>-->
-            <if test="username !=null and username !=''">
-                and name = #{username}
-            </if>
+<!--            <if test="username !=null and username !=''">-->
+<!--                and name = #{username}-->
+<!--            </if>-->
+<!--            <if test="startCreateTime !=null and endCreateTime !=null">-->
 
-            <if test="startCreateTime != null and endCreateTime != null">
-                    and create_time BETWEEN  #{startCreateTime} AND  #{endCreateTime}
+<!--                and create_time BETWEEN #{startCreateTime} AND #{endCreateTime};-->
+<!--            </if>-->
+<!--        </where>-->
 
-             </if>
-        </where>
     </select>
+
+
 
     <!--登录方法，根据手机号查询用户信息-->
     <select id="login" parameterType="user" resultType="user">

@@ -14,7 +14,7 @@ public class UserVo {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endCreateTime;
 
-    private int userId;
+    private Integer userId;
 
     private List<Integer> roleIdList;
 
@@ -26,7 +26,14 @@ public class UserVo {
     @Override
     public String toString() {
         return "UserVo{" +
-                " menuId=" + menuId +
+                "currentPage=" + currentPage +
+                ", pageSize=" + pageSize +
+                ", username='" + username + '\'' +
+                ", startCreateTime=" + startCreateTime +
+                ", endCreateTime=" + endCreateTime +
+                ", userId=" + userId +
+                ", roleIdList=" + roleIdList +
+                ", menuId=" + menuId +
                 ", name='" + name + '\'' +
                 ", menuList=" + menuList +
                 '}';

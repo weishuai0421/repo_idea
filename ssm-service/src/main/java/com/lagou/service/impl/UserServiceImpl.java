@@ -20,7 +20,11 @@ public class UserServiceImpl implements UserService {
     public PageInfo findAllUserByPage(UserVo userVo) {
         PageHelper.startPage(userVo.getCurrentPage(),userVo.getPageSize());
 
+        System.out.println(userVo);
         List<User> userList = userMapper.findAllUserByPage(userVo);
+        for (User user : userList) {
+            System.out.println(user);
+        }
         PageInfo<User> userPageInfo = new PageInfo<>(userList);
         return userPageInfo;
     }
@@ -62,9 +66,14 @@ public class UserServiceImpl implements UserService {
             userMapper.UserContextRole(user_role_relation);
         }
     }
+
+
+
+
     //获取用户权限信息
     @Override
     public ResponseResult getUserPermissions(Integer userId) {
+        //根据用户id获取他所拥有的角色集合
         List<Role> roleList = userMapper.findUserRelationRoleById(userId);
         //获取角色id保存到list集合中
         ArrayList<Integer> roleIds = new ArrayList<>();
@@ -73,6 +82,7 @@ public class UserServiceImpl implements UserService {
         }
         //根据角色id去查询父子级菜单信息
         List<UserVo> userVoList = userMapper.findSubMenuByRoleId(roleIds);
+        //根据角色id查询其所拥有的资源信息
         List<Resource> resourceList = userMapper.findResourceByRoleId(roleIds);
         for (Resource resource : resourceList) {
             System.out.println(resource);

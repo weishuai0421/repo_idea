@@ -23,4 +23,5 @@ public class ResourceController {
         ResponseResult responseResult = new ResponseResult(true, 200, "多条件查询资源成功", allResouceByPage);
         return responseResult;
     }
+
 }

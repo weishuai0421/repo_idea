@@ -24,8 +24,10 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     private UserService userService;
+    //分页查询用户信息
     @RequestMapping("/findAllUserByPage")
     public ResponseResult findAllUserByPage(@RequestBody UserVo userVo){
+        System.out.println(userVo);
         PageInfo pageInfo = userService.findAllUserByPage(userVo);
         ResponseResult responseResult = new ResponseResult(true, 200, "查询用户信息成功", pageInfo);
         return responseResult;

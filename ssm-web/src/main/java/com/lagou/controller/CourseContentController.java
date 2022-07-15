@@ -21,7 +21,7 @@ import java.util.Map;
 public class CourseContentController {
     @Autowired
     private CourseContentService courseContentService;
-
+    //查询章节和课时信息
     @RequestMapping("/findCourseSectionAndLesson")
     public ResponseResult findCourseSectionAndLessonById(Integer courseId){
         List<CourseSection> courseSectionList = courseContentService.findCourseSectionAndLessonByid(courseId);
@@ -65,6 +65,7 @@ public class CourseContentController {
     //新增课时
     @RequestMapping("saveOrUpdateLesson")
     public ResponseResult saveOrUpdateLesson(@RequestBody CourseLesson courseLesson){
+        //判断是否携带了课时id，如果携带了那就是修改，否则就是添加。
         courseContentService.saveLesson(courseLesson);
         ResponseResult responseResult = new ResponseResult(true, 200, "新增课时成功", null);
         return responseResult;

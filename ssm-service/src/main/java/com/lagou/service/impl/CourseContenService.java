@@ -14,6 +14,7 @@ import java.util.List;
 public class CourseContenService implements CourseContentService {
     @Autowired
     private CourseContentMapper courseContentMapper;
+    //根据课程id查询章节和课时id
     @Override
     public List<CourseSection> findCourseSectionAndLessonByid(Integer id) {
         List<CourseSection> courseSectionList = courseContentMapper.findCourseSectionAndLessonByid(id);

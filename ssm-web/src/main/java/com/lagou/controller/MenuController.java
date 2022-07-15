@@ -19,7 +19,7 @@ public class MenuController {
 
     @Autowired
     private MenuService menuService;
-
+    //查询所有菜单
     @RequestMapping("/findAllMenu")
     public ResponseResult findAllMenu(){
         List<Menu> menuList = menuService.findAllMenu();

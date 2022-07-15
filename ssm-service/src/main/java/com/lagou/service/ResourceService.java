@@ -5,5 +5,6 @@ import com.lagou.domain.Resource;
 import com.lagou.domain.ResourceVo;
 
 public interface ResourceService {
+    //分页多条件查询资源信息
     public PageInfo<Resource> findAllResouceByPage(ResourceVo resourceVo);
 }

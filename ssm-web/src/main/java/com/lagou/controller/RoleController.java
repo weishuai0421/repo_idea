@@ -21,6 +21,7 @@ import java.util.Map;
 public class RoleController {
     @Autowired
     private RoleService roleService;
+    //查询所有角色信息（条件）
     @RequestMapping("/findAllRole")
     public ResponseResult findAllRole(@RequestBody Role role){
         List<Role> allRole = roleService.findAllRole(role);
@@ -52,8 +53,6 @@ public class RoleController {
         roleService.roleContextMenu(roleMenuVo);
         ResponseResult responseResult = new ResponseResult(true, 200, "为角色分配菜单成功", "");
         return responseResult;
-
-
     }
     //删除角色
     @RequestMapping("/deleteRole")
